@@ -15,6 +15,7 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer id;
 
+    public Integer now_number;
     public Integer number;
 
     public String title;

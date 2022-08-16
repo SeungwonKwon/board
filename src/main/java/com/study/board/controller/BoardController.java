@@ -92,6 +92,23 @@ public class BoardController {
         return "boardmodify";
     }
 
+    @PostMapping("/board/sign/{id}")
+    public  String boardSign(@PathVariable("id") Integer id, Model model, Board board){
+
+        Board boardTemp = boardService.boardView(id);
+        if(boardTemp.now_number < boardTemp.number) {
+            boardTemp.now_number += 1;
+            boardService.write(boardTemp);
+            model.addAttribute("message", "신청되었습니다.");
+        }
+        else{
+            model.addAttribute("message", "정원 초과입니다");
+        }
+        model.addAttribute("searchUrl", "/board/list");
+
+        return "message";
+    }
+
     @PostMapping("board/update/{id}")
     public String boardUpdate(@PathVariable("id") Integer id, Board board, Model model){
 
