@@ -40,15 +40,20 @@ public class BoardController {
     @GetMapping("/board/list")
     public String boardList(Model model, @PageableDefault(page = 0, size = 10, sort = "id",
                             direction = Sort.Direction.DESC) Pageable pageable,
-                            String searchKeyword){
+                            String searchKeyword, String searchTitle){
 
         Page<Board> list = null;
 
         if(searchKeyword == null){
-            list = boardService.boardList(pageable);
+            if(searchTitle == null){
+                list = boardService.boardList(pageable);
+            }
+            else{
+                list = boardService.boardSearchTitle(searchTitle, pageable);
+            }
         }
         else{
-            list = boardService.boardSearchCategory(searchKeyword,pageable);
+            list = boardService.boardSearchCategory(searchKeyword, pageable);
         }
 
         int nowPage = list.getPageable().getPageNumber() + 1;
