@@ -1,5 +1,7 @@
 package com.study.board.controller;
 
+import com.study.board.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -11,10 +13,18 @@ import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util.println
 @Controller
 public class UserController {
 
-    @GetMapping("/board/login")
-    @ResponseBody
-    public String userLogin(){
+    @Autowired
+    private UserRepository userRepository;
 
-        return "123123";
+    @GetMapping("/board/signin")
+    public String userSignin(){
+
+        return "usersignin";
+    }
+
+    @GetMapping("/board/signup")
+    public String userSignup(){
+
+        return "usersignup";
     }
 }
