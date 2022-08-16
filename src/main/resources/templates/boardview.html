@@ -11,13 +11,13 @@
     <h2 th:text="${board.category}"></h2>
     <p>
         <span th:text="${board.date}"></span>
-        <span th:text="${board.MA}"></span>
+        <span th:text="${board.noon}"></span>
         <span th:text="${board.hour}"></span>시
         <span th:text="${board.minute}"></span>분<br>
-        <span th:text="${board.now_number}"></span>/
-        <span th:text="${board.number}"></span>
+        <span th:text="${board.currentpeople}"></span>/
+        <span th:text="${board.maxpeople}"></span>
     </p>
-    장소 : <span th:text="${board.place}"></span>
+    장소 : <span th:text="${board.placeName}"></span>
     <p th:text="${board.content}"></p>
 
     <form th:action="@{/board/sign/{id}(id = ${board.id})}" method="post">

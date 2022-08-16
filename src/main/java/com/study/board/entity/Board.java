@@ -15,24 +15,24 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer id;
 
-    public Integer currentPeople;
-    public Integer maxPeople;
-
     public String title;
 
     public String content;
 
     public String category;
 
-    public String genderDisplay;
+    public String genderdisplay;
 
     public String date;
     public String noon;
     public Integer hour;
     public Integer minute;
 
-    public String placeName;
+    public String placename;
     public String position;
+
+    public Integer currentpeople;
+    public Integer maxpeople;
 }
 
 

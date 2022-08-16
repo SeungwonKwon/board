@@ -90,11 +90,11 @@ public class BoardController {
     }
 
     @PostMapping("/board/sign/{id}")
-    public  String boardSign(@PathVariable("id") Integer id, Model model, Board board){
+    public String boardSign(@PathVariable("id") Integer id, Model model, Board board){
 
         Board boardTemp = boardService.boardView(id);
-        if(boardTemp.currentPeople < boardTemp.maxPeople) {
-            boardTemp.currentPeople += 1;
+        if(boardTemp.currentpeople < boardTemp.maxpeople) {
+            boardTemp.currentpeople += 1;
             boardService.write(boardTemp);
             model.addAttribute("message", "신청되었습니다.");
         }
@@ -117,9 +117,9 @@ public class BoardController {
         boardTemp.setNoon(board.getNoon());
         boardTemp.setHour(board.getHour());
         boardTemp.setMinute(board.getMinute());
-        boardTemp.setMaxPeople(board.getMaxPeople());
-        boardTemp.setGenderDisplay(board.getGenderDisplay());
-        boardTemp.setPlaceName(board.getPlaceName());
+        boardTemp.setMaxpeople(board.getMaxpeople());
+        boardTemp.setGenderdisplay(board.getGenderdisplay());
+        boardTemp.setPlacename(board.getPlacename());
         boardTemp.setPosition(board.getPosition());
 
         boardService.write(boardTemp);
