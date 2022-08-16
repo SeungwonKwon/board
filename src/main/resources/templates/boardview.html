@@ -17,7 +17,7 @@
         <span th:text="${board.currentpeople}"></span>/
         <span th:text="${board.maxpeople}"></span>
     </p>
-    장소 : <span th:text="${board.placeName}"></span>
+    장소 : <span th:text="${board.placename}"></span>
     <p th:text="${board.content}"></p>
 
     <form th:action="@{/board/sign/{id}(id = ${board.id})}" method="post">
