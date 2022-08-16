@@ -15,8 +15,8 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer id;
 
-    public Integer now_number;
-    public Integer number;
+    public Integer currentPeople;
+    public Integer maxPeople;
 
     public String title;
 
@@ -24,15 +24,15 @@ public class Board {
 
     public String category;
 
-    public String gender;
+    public String genderDisplay;
 
     public String date;
-    public String MA;
+    public String noon;
     public Integer hour;
     public Integer minute;
 
-    public String place;
-    public String locate;
+    public String placeName;
+    public String position;
 }
 
 

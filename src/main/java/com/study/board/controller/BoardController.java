@@ -9,10 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class BoardController {
@@ -96,8 +93,8 @@ public class BoardController {
     public  String boardSign(@PathVariable("id") Integer id, Model model, Board board){
 
         Board boardTemp = boardService.boardView(id);
-        if(boardTemp.now_number < boardTemp.number) {
-            boardTemp.now_number += 1;
+        if(boardTemp.currentPeople < boardTemp.maxPeople) {
+            boardTemp.currentPeople += 1;
             boardService.write(boardTemp);
             model.addAttribute("message", "신청되었습니다.");
         }
@@ -117,13 +114,13 @@ public class BoardController {
         boardTemp.setContent(board.getContent());
         boardTemp.setCategory(board.getCategory());
         boardTemp.setDate(board.getDate());
-        boardTemp.setMA(board.getMA());
+        boardTemp.setNoon(board.getNoon());
         boardTemp.setHour(board.getHour());
         boardTemp.setMinute(board.getMinute());
-        boardTemp.setNumber(board.getNumber());
-        boardTemp.setGender(board.getGender());
-        boardTemp.setPlace(board.getPlace());
-        boardTemp.setLocate(board.getLocate());
+        boardTemp.setMaxPeople(board.getMaxPeople());
+        boardTemp.setGenderDisplay(board.getGenderDisplay());
+        boardTemp.setPlaceName(board.getPlaceName());
+        boardTemp.setPosition(board.getPosition());
 
         boardService.write(boardTemp);
 
