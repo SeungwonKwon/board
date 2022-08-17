@@ -1,5 +1,7 @@
 package com.study.board.entity;
 
+import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.fasterxml.jackson.databind.annotation.JsonNaming;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -7,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(schema="board")
+@JsonNaming(value= PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class Board {
 
     @Id

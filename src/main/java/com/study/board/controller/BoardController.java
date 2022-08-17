@@ -11,7 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
+//@RequestMapping("/api")
 public class BoardController {
 
     @Autowired
@@ -128,6 +131,24 @@ public class BoardController {
         model.addAttribute("searchUrl", "/board/list");
 
         return "message";
+    }
+
+    @GetMapping("/api/posts")
+    @ResponseBody
+    public List<Board> getAllData(){
+        return boardService.getAllData();
+    }
+
+    @GetMapping("/api/posts/{category}")
+    @ResponseBody
+    public List<Board> getCategoryData(@PathVariable String category){
+        return boardService.getCategoryData(category);
+    }
+
+    @GetMapping("/api/posts/id/{id}")
+    @ResponseBody
+    public Board getIdData(@PathVariable("id") Integer id){
+        return boardService.boardView(id);
     }
 
 }
