@@ -1,6 +1,6 @@
 package com.study.board.controller;
 
-import com.study.board.entity2.User;
+import com.study.board.entity.User;
 import com.study.board.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
