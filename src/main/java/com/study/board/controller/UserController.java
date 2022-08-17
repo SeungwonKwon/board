@@ -1,15 +1,12 @@
 package com.study.board.controller;
 
-import com.study.board.entity.User;
+import com.study.board.entity2.User;
 import com.study.board.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.sql.SQLOutput;
 
 import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Util.println;
 
