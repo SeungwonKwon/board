@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @Controller
 //@RequestMapping("/api")
@@ -152,7 +154,7 @@ public class BoardController {
         return boardService.boardView(id);
     }
 
-    @GetMapping("/test/save/{data}")
+    @GetMapping("/api/write/{data}")
     public String DataSave(@PathVariable String data, Model model, Board board){
         JSONObject jobject = new JSONObject(data);
         board.title = jobject.getString("title");
@@ -168,31 +170,13 @@ public class BoardController {
         board.placename = jobject.getString("placename");
         board.position = jobject.getString("position");
 
+
         boardService.write(board);
 
         model.addAttribute("message","글 작성이 완료되었습니다.");
         model.addAttribute("searchUrl", "/board/list");
 
         return "message";
-
-        /*String jsonString = "{\"title\": \"how to get stroage size\","
-                + "\"url\": \"https://codechacha.com/ko/get-free-and-total-size-of-volumes-in-android/\","
-                + "\"draft\": false,"
-                + "\"star\": 10"
-                + "}";
-
-        JSONObject jObject = new JSONObject(jsonString);
-        String title = jObject.getString("title");
-        String url = jObject.getString("url");
-        Boolean draft = jObject.getBoolean("draft");
-        int star = jObject.getInt("star");
-
-        System.out.println("title: " + title);
-        System.out.println("url: " + url);
-        System.out.println("draft: " + draft);
-        System.out.println("star: " + star);
-
-        return "0";*/
     }
 
 }

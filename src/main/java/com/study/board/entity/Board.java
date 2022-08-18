@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table(schema="board")
-@JsonNaming(value= PropertyNamingStrategy.SnakeCaseStrategy.class)
 public class Board {
 
     @Id
