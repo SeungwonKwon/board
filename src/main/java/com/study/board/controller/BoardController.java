@@ -2,6 +2,7 @@ package com.study.board.controller;
 
 import com.study.board.entity.Board;
 import com.study.board.service.BoardService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -149,6 +150,49 @@ public class BoardController {
     @ResponseBody
     public Board getIdData(@PathVariable("id") Integer id){
         return boardService.boardView(id);
+    }
+
+    @GetMapping("/test/save/{data}")
+    public String DataSave(@PathVariable String data, Model model, Board board){
+        JSONObject jobject = new JSONObject(data);
+        board.title = jobject.getString("title");
+        board.content = jobject.getString("content");
+        board.category = jobject.getString("category");
+        board.date = jobject.getString("date");
+        board.noon = jobject.getString("noon");
+        board.hour = jobject.getInt("hour");
+        board.minute = jobject.getInt("minute");
+        board.currentpeople = 1;
+        board.maxpeople = jobject.getInt("maxpeople");
+        board.genderdisplay = jobject.getString("genderdisplay");
+        board.placename = jobject.getString("placename");
+        board.position = jobject.getString("position");
+
+        boardService.write(board);
+
+        model.addAttribute("message","글 작성이 완료되었습니다.");
+        model.addAttribute("searchUrl", "/board/list");
+
+        return "message";
+
+        /*String jsonString = "{\"title\": \"how to get stroage size\","
+                + "\"url\": \"https://codechacha.com/ko/get-free-and-total-size-of-volumes-in-android/\","
+                + "\"draft\": false,"
+                + "\"star\": 10"
+                + "}";
+
+        JSONObject jObject = new JSONObject(jsonString);
+        String title = jObject.getString("title");
+        String url = jObject.getString("url");
+        Boolean draft = jObject.getBoolean("draft");
+        int star = jObject.getInt("star");
+
+        System.out.println("title: " + title);
+        System.out.println("url: " + url);
+        System.out.println("draft: " + draft);
+        System.out.println("star: " + star);
+
+        return "0";*/
     }
 
 }
