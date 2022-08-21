@@ -17,5 +17,7 @@ public class Comment {
 
     public String writerid;
 
+    public String writername;
+
     public String comment;
 }

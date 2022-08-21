@@ -207,9 +207,6 @@ public class BoardController {
 
         boardService.boardDelete(id);
 
-        model.addAttribute("message","글이 삭제되었습니다.");
-        model.addAttribute("searchUrl", "/");
-
-        return "message";
+        return "redirect:/";
     }
 }
