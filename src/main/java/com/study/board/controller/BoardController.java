@@ -13,8 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+
 
 @Controller
 //@RequestMapping("/api")
@@ -79,8 +78,8 @@ public class BoardController {
         return "boardview";
     }
 
-    @GetMapping("/board/delete")
-    public String boardDelete(Integer id){
+    @GetMapping("/board/delete/{id}")
+    public String boardDelete(@PathVariable Integer id){
 
         boardService.boardDelete(id);
 
@@ -162,8 +161,8 @@ public class BoardController {
         board.category = jobject.getString("category");
         board.date = jobject.getString("date");
         board.noon = jobject.getString("noon");
-        board.hour = jobject.getInt("hour");
-        board.minute = jobject.getInt("minute");
+        board.hour = jobject.getString("hour");
+        board.minute = jobject.getString("minute");
         board.currentpeople = 1;
         board.maxpeople = jobject.getInt("maxpeople");
         board.genderdisplay = jobject.getString("genderdisplay");
@@ -179,4 +178,38 @@ public class BoardController {
         return "message";
     }
 
+    @PostMapping("/api/posts/modify/{id}")
+    public String boardModify(@PathVariable("id") Integer id, @RequestBody Board board, Model model){
+        Board boardTemp = boardService.boardView(id);
+
+        boardTemp.setTitle(board.getTitle());
+        boardTemp.setContent(board.getContent());
+        boardTemp.setCategory(board.getCategory());
+        boardTemp.setDate(board.getDate());
+        boardTemp.setNoon(board.getNoon());
+        boardTemp.setHour(board.getHour());
+        boardTemp.setMinute(board.getMinute());
+        boardTemp.setMaxpeople(board.getMaxpeople());
+        boardTemp.setGenderdisplay(board.getGenderdisplay());
+        boardTemp.setPlacename(board.getPlacename());
+        boardTemp.setPosition(board.getPosition());
+
+        boardService.write(boardTemp);
+
+        model.addAttribute("message","글 수정이 완료되었습니다.");
+        model.addAttribute("searchUrl", "/");
+
+        return "message";
+    }
+
+    @GetMapping("/api/delete/{id}")
+    public String deletePost(@PathVariable Integer id, Model model){
+
+        boardService.boardDelete(id);
+
+        model.addAttribute("message","글이 삭제되었습니다.");
+        model.addAttribute("searchUrl", "/");
+
+        return "message";
+    }
 }

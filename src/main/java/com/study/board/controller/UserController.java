@@ -61,7 +61,7 @@ public class UserController {
 
         userService.write(user);
 
-        model.addAttribute("message","글 작성이 완료되었습니다.");
+        model.addAttribute("message","회원가입이 완료되었습니다.");
         model.addAttribute("searchUrl", "/board/list");
 
         return "message";

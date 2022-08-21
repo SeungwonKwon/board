@@ -25,8 +25,8 @@ public class Board {
 
     public String date;
     public String noon;
-    public Integer hour;
-    public Integer minute;
+    public String hour;
+    public String minute;
 
     public String placename;
     public String position;

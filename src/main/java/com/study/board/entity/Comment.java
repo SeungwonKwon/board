@@ -1,0 +1,21 @@
+package com.study.board.entity;
+
+import lombok.Data;
+
+import javax.persistence.*;
+
+@Entity
+@Data
+@Table(schema="comment")
+public class Comment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public Integer id;
+
+    public String postid;
+
+    public String writerid;
+
+    public String comment;
+}
